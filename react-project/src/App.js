@@ -18,6 +18,13 @@ class App extends Component {
       persons: [{ name: "Kate Li", age: 26 }, { name: "eli", age: 28 }]
     });
   };
+//event target is input here, because this function is called be input in Person.js
+  changeNameByInput = (event)=>{
+    this.setState({
+    persons: [{ name: event.target.value, age: 30 }, { name: "Eli", age: 30 }]
+  });
+};
+
   render() {
     return (
       /**This code is not HTML, it is JSX. It will be compile to different syntex when runing it. 
@@ -35,13 +42,16 @@ class App extends Component {
       //if you are not wrapping anything in a element, we can use /> to self close the element
       //this.switchNameHandler doesnt have (), because we dont
       //call the function but passing the reference of the function
+      //if switchNameHandler has arguments, we can use arrow funtion
+      //()=> this.switchNameHandler(args),this is an anomynous callback function
       <div className="App">
-        <h1>I am an app</h1>
+        <h1>I am an app</h1> 
 
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
           click = {this.switchNameHandler}
+          changeByInput = {this.changeNameByInput}
         />
         <Person name="Eli" age="27"> 
           I like eating
