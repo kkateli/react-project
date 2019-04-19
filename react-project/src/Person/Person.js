@@ -1,5 +1,6 @@
 //This is Person component
 import React from 'react';
+import "./Person.css";
 
 const person = (props)=>{
     //there is the way to declear name and age
@@ -12,10 +13,11 @@ const person = (props)=>{
     //value={prps.name} enables twoway binding so that the inout knows the current
     //value
     return( 
-        <div><p onClick={props.click}>I am {props.name} I am {props.age}</p>
+        <div className = 'Person'>
+        <p onClick={props.click}>I am {props.name} I am {props.age}</p>
         <p>{props.children}</p>
         <input type='text' onChange={props.changeByInput} value={props.name}/>
         </div>
         )
 }
-export default person; 
+export default person;  

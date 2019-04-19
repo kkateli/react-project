@@ -26,6 +26,13 @@ class App extends Component {
 };
 
   render() {
+    //this is another way to change styling apart from importing css file
+    //sytex is javascript, not as powerful as css because some of the features are not available.
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border:'1px solid blue'
+    }
     return (
       /**This code is not HTML, it is JSX. It will be compile to different syntex when runing it. 
        * eg:<div className="App">
@@ -56,7 +63,7 @@ class App extends Component {
         <Person name="Eli" age="27"> 
           I like eating
         </Person>
-        <button onClick={this.switchNameHandler}>Switch name</button>
+        <button style = {style} onClick={this.switchNameHandler}>Switch name</button>
       </div>
     );
   }
