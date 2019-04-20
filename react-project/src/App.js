@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 import "./App.css";
 
-import Person from './Person/Person';
+import Person from "./Person/Person";
 
 class App extends Component {
-  // REVIEW (How it is written)we need to use state with care
+  // REVIEW (state is an object)we need to use state with care
   state = {
-    persons: [{ name: "Kate", age: 28 }, { name: "eli", age: 28 }]
+    persons: [{ name: "Kate", age: 28 }, { name: "eli", age: 28 }],
+    ifShown: false
   };
   //event handler
   switchNameHandler = () => {
@@ -18,21 +19,26 @@ class App extends Component {
       persons: [{ name: "koko", age: 26 }, { name: "eli", age: 28 }]
     });
   };
-//NOTE event target is input here, because this function is called be input in Person.js
-  changeNameByInput = (event)=>{
+  //NOTE event target is input here, because this function is called be input in Person.js
+  changeNameByInput = event => {
     this.setState({
-    persons: [{ name: event.target.value, age: 30 }, { name: "Eli", age: 30 }]
-  });
-};
+      persons: [{ name: event.target.value, age: 30 }, { name: "Eli", age: 30 }]
+    });
+  };
+
+  showPeopleHandler = () => {
+    //when button is clicked, ifshown state changes to the opposite
+    this.setState({ifShown:!this.state.ifShown});
+  };
 
   render() {
     //this is another way to change styling apart from importing css file
     //sytex is javascript, not as powerful as css because some of the features are not available.
     const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border:'1px solid blue'
-    }
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue"
+    };
     return (
       /**ANCHOR 1. This code is not HTML, it is JSX. It will be compile to different syntex when runing it. 
        * eg:<div className="App">
@@ -50,21 +56,28 @@ class App extends Component {
       ()=> this.switchNameHandler(args),this is an anomynous callback function
       */
       //NOTE className is class in css.
-      
-      
+      //FIXME
       <div className="App">
-        <h1>I am an app</h1> 
-
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click = {this.switchNameHandler}
-          changeByInput = {this.changeNameByInput}
-        />
-        <Person name="Eli" age="27"> 
-          I like eating
-        </Person>
-        <button style = {style} onClick={this.switchNameHandler}>Switch name</button>
+        <h1>I am an app</h1>
+        {this.state.ifShown ? 
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+              click={this.switchNameHandler}
+              changeByInput={this.changeNameByInput}
+            />
+            <Person name="Eli" age="27">
+              I like eating
+            </Person>
+          </div>
+         : null}
+        <button style={style} onClick={this.switchNameHandler}>
+          Switch Name
+        </button>
+        <button style={style} onClick={this.showPeopleHandler}>
+          Show People
+        </button>
       </div>
     );
   }
