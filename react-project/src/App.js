@@ -54,9 +54,10 @@ class App extends Component {
       but passing the reference of the function.
       5. if switchNameHandler has arguments, we can use arrow funtion
       ()=> this.switchNameHandler(args),this is an anomynous callback function
+      6. only ternery operation(if ? :) works in JSX
       */
       //NOTE className is class in css.
-      //FIXME
+      //
       <div className="App">
         <h1>I am an app</h1>
         {this.state.ifShown ? 
