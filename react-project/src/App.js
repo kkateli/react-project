@@ -28,7 +28,7 @@ class App extends Component {
 
   showPeopleHandler = () => {
     //when button is clicked, ifshown state changes to the opposite
-    this.setState({ifShown:!this.state.ifShown});
+    this.setState({ ifShown: !this.state.ifShown });
   };
 
   render() {
@@ -39,6 +39,29 @@ class App extends Component {
       font: "inherit",
       border: "1px solid blue"
     };
+    //use if/else statement outside JSX
+    let people = null;
+    if (this.state.ifShown) {
+      people = (
+        <div>
+          {/*The alternative of this 
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            click={this.switchNameHandler}
+            changeByInput={this.changeNameByInput}
+            <Person name="Eli" age="27">
+            I like eating
+          </Person>
+          /> is:
+          (Convert javascript arraies to JSX!!!!) NOTE */}
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} />;
+          })}
+        </div>
+      );
+    }
+
     return (
       /**ANCHOR 1. This code is not HTML, it is JSX. It will be compile to different syntex when runing it. 
        * eg:<div className="App">
@@ -60,7 +83,8 @@ class App extends Component {
       //
       <div className="App">
         <h1>I am an app</h1>
-        {this.state.ifShown ? 
+        {/* NOTE this can be one way, nut can be messy when project gets bigger */}
+        {/* {this.state.ifShown ? 
           <div>
             <Person
               name={this.state.persons[0].name}
@@ -72,7 +96,8 @@ class App extends Component {
               I like eating
             </Person>
           </div>
-         : null}
+         : null} */}
+        {people}
         <button style={style} onClick={this.switchNameHandler}>
           Switch Name
         </button>
