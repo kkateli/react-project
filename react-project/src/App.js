@@ -4,6 +4,8 @@ import "./App.css";
 
 import Person from "./Person/Person";
 
+import Validation from "./Validation/Validation";
+
 class App extends Component {
   // REVIEW (state is an object)we need to use state with care
   state = {
@@ -141,6 +143,7 @@ class App extends Component {
         </button>
         <input style={inputStyle} onChange={(event)=>this.inputLength(event)}></input>
         <p>Count:{this.state.userInputCount}</p>
+        <Validation len={this.state.userInputCount}/>
       </div>
     ); 
   }
