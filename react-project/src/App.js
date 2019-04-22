@@ -6,6 +6,8 @@ import Person from "./Person/Person";
 
 import Validation from "./Validation/Validation";
 
+import Char from "./Char/Char";
+
 class App extends Component {
   // REVIEW (state is an object)we need to use state with care
   state = {
@@ -14,7 +16,8 @@ class App extends Component {
       { id: "fdsfds", name: "eli", age: 28 }
     ],
     ifShown: false,
-    userInputCount:0
+    userInputCount: 0,
+    userInput: ""
   };
   //event handler
   //NOTE event target is input here, because this function is called be input in Person.js
@@ -50,13 +53,15 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
-  inputLength= (event)=>{
-    let count = {...this.state.userInputCount};
-    count= event.target.value.length;
-    this.setState({
-      userInputCount:count
-    });
+  inputLength = event => {
+    let count = { ...this.state.userInputCount };
 
+    count = event.target.value.length;
+
+    this.setState({
+      userInputCount: count,
+      userInput: event.target.value
+    });
   };
 
   render() {
@@ -67,10 +72,16 @@ class App extends Component {
       font: "inherit",
       border: "1px solid blue"
     };
+    //NOTE split will convet a string to an array with coresponding chars, spliting is based on ''
+    //TODO why can return in the map method?
+    const wordList = this.state.userInput.split('').map(char => {
+      return <Char word={char} />;
+    });
+    
 
-    const inputStyle={
-      border:'1px black solid',
-    }
+    const inputStyle = {
+      border: "1px black solid"
+    };
     //use if/else statement outside JSX
     let people = null;
     if (this.state.ifShown) {
@@ -141,11 +152,12 @@ class App extends Component {
         <button style={style} onClick={this.showPeopleHandler}>
           Show People
         </button>
-        <input style={inputStyle} onChange={(event)=>this.inputLength(event)}></input>
+        <input style={inputStyle} onChange={event => this.inputLength(event)} />
         <p>Count:{this.state.userInputCount}</p>
-        <Validation len={this.state.userInputCount}/>
+        <Validation len={this.state.userInputCount} />
+        {wordList}
       </div>
-    ); 
+    );
   }
 }
 
