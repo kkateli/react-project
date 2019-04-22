@@ -11,7 +11,8 @@ class App extends Component {
       { id: "fdsd", name: "Kate", age: 28 },
       { id: "fdsfds", name: "eli", age: 28 }
     ],
-    ifShown: false
+    ifShown: false,
+    userInputCount:0
   };
   //event handler
   //NOTE event target is input here, because this function is called be input in Person.js
@@ -47,6 +48,15 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  inputLength= (event)=>{
+    let count = {...this.state.userInputCount};
+    count= event.target.value.length;
+    this.setState({
+      userInputCount:count
+    });
+
+  };
+
   render() {
     //this is another way to change styling apart from importing css file
     //sytex is javascript, not as powerful as css because some of the features are not available.
@@ -55,6 +65,10 @@ class App extends Component {
       font: "inherit",
       border: "1px solid blue"
     };
+
+    const inputStyle={
+      border:'1px black solid',
+    }
     //use if/else statement outside JSX
     let people = null;
     if (this.state.ifShown) {
@@ -125,8 +139,10 @@ class App extends Component {
         <button style={style} onClick={this.showPeopleHandler}>
           Show People
         </button>
+        <input style={inputStyle} onChange={(event)=>this.inputLength(event)}></input>
+        <p>Count:{this.state.userInputCount}</p>
       </div>
-    );
+    ); 
   }
 }
 
