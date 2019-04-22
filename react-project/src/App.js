@@ -7,14 +7,30 @@ import Person from "./Person/Person";
 class App extends Component {
   // REVIEW (state is an object)we need to use state with care
   state = {
-    persons: [{ name: "Kate", age: 28 }, { name: "eli", age: 28 }],
+    persons: [
+      { id: "fdsd", name: "Kate", age: 28 },
+      { id: "fdsfds", name: "eli", age: 28 }
+    ],
     ifShown: false
   };
   //event handler
   //NOTE event target is input here, because this function is called be input in Person.js
-  changeNameByInput = event => {
+  changeNameById = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    //making a copy before changing
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [{ name: event.target.value, age: 30 }, { name: "Eli", age: 30 }]
+      persons: persons
     });
   };
 
@@ -23,14 +39,13 @@ class App extends Component {
     this.setState({ ifShown: !this.state.ifShown });
   };
 
-  deletePerson=(index)=>{
+  deletePerson = index => {
     // const persons = this.state.persons; NOTE considered as bad practice, we need to make
     //changes on a copy before actually changing the original one.
-    const persons =[...this.state.persons];
-    persons.splice(index,1);
-    this.setState({persons:persons});
-
-  }
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+    this.setState({ persons: persons });
+  };
 
   render() {
     //this is another way to change styling apart from importing css file
@@ -56,8 +71,16 @@ class App extends Component {
           </Person>
           /> is:
           (Convert javascript arraies to JSX!!!!) NOTE */}
-          {this.state.persons.map((person,index)=> {
-            return <Person name={person.name} age={person.age} click={()=>this.deletePerson(index)}/>;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changeById={event => this.changeNameById(event, person.id)}
+                click={() => this.deletePerson(index)}
+              />
+            );
           })}
         </div>
       );
