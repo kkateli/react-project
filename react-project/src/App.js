@@ -11,14 +11,6 @@ class App extends Component {
     ifShown: false
   };
   //event handler
-  switchNameHandler = () => {
-    //NOTE Dont do this: this.state.persons[0].name = 'Kate changed';
-    /*REVIEW (The way how it is written)setState will auto overwrite the parts that have been changed
-    and untouch the identical parts. Changeing state will lead to changing the props*/
-    this.setState({
-      persons: [{ name: "koko", age: 26 }, { name: "eli", age: 28 }]
-    });
-  };
   //NOTE event target is input here, because this function is called be input in Person.js
   changeNameByInput = event => {
     this.setState({
@@ -30,6 +22,15 @@ class App extends Component {
     //when button is clicked, ifshown state changes to the opposite
     this.setState({ ifShown: !this.state.ifShown });
   };
+
+  deletePerson=(index)=>{
+    // const persons = this.state.persons; NOTE considered as bad practice, we need to make
+    //changes on a copy before actually changing the original one.
+    const persons =[...this.state.persons];
+    persons.splice(index,1);
+    this.setState({persons:persons});
+
+  }
 
   render() {
     //this is another way to change styling apart from importing css file
@@ -55,8 +56,8 @@ class App extends Component {
           </Person>
           /> is:
           (Convert javascript arraies to JSX!!!!) NOTE */}
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person,index)=> {
+            return <Person name={person.name} age={person.age} click={()=>this.deletePerson(index)}/>;
           })}
         </div>
       );
@@ -98,9 +99,6 @@ class App extends Component {
           </div>
          : null} */}
         {people}
-        <button style={style} onClick={this.switchNameHandler}>
-          Switch Name
-        </button>
         <button style={style} onClick={this.showPeopleHandler}>
           Show People
         </button>
