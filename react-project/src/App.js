@@ -64,6 +64,13 @@ class App extends Component {
     });
   };
 
+  deleteChar = index => {
+    const charList = [...this.state.userInput.split('')];
+    charList.splice(index, 1);
+    const inputText = charList.join('');
+    this.setState({ userInput: inputText });
+  };
+
   render() {
     //this is another way to change styling apart from importing css file
     //sytex is javascript, not as powerful as css because some of the features are not available.
@@ -74,10 +81,9 @@ class App extends Component {
     };
     //NOTE split will convet a string to an array with coresponding chars, spliting is based on ''
     //TODO why can return in the map method?
-    const wordList = this.state.userInput.split('').map(char => {
-      return <Char word={char} />;
+    const wordList = this.state.userInput.split("").map((char, index) => {
+      return <Char clickChar={() => this.deleteChar({index})} word={char} />;
     });
-    
 
     const inputStyle = {
       border: "1px black solid"
@@ -111,6 +117,9 @@ class App extends Component {
           })}
         </div>
       );
+
+      //styling changing after the button is clicked
+      style.backgroundColor = 'red';
     }
 
     return (
