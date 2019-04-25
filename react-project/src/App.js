@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //change css files name to sth.module.css to use css module features
-import cssClasses from "./App.module.css";//this name here is up to you
+import cssClasses from "./App.module.css"; //this name here is up to you
 
 import Person from "./Person/Person";
 
@@ -15,8 +15,7 @@ class App extends Component {
   state = {
     persons: [
       { id: "fdsd", name: "Kate", age: 28 },
-      { id: "fdsfds", name: "eli", age: 28 },
-      
+      { id: "fdsfds", name: "eli", age: 28 }
     ],
     ifShown: false,
     userInputCount: 0,
@@ -75,19 +74,18 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.persons);
     //this is another way to change styling apart from importing css file
     //sytex is javascript, not as powerful as css because some of the features are not available.
-    const style = {
-      backgroundColor: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      // ':hover':{
-      //   backgroundColor:'lightgreen',
-      //   color:'black'
+    // const style = {
+    //   backgroundColor: "white",
+    //   font: "inherit",
+    //   border: "1px solid blue",
+    // ':hover':{
+    //   backgroundColor:'lightgreen',
+    //   color:'black'
 
-      // }
-    };
+    // }
+    // };
     //NOTE split will convet a string to an array with coresponding chars, spliting is based on ''
     //TODO why can return in the map method?
     const wordList = this.state.userInput.split("").map((char, index) => {
@@ -98,6 +96,7 @@ class App extends Component {
       border: "1px black solid"
     };
     //use if/else statement outside JSX
+    let appBtn = "";
     let people = null;
     if (this.state.ifShown) {
       people = (
@@ -120,17 +119,17 @@ class App extends Component {
                 age={person.age}
                 key={person.id}
                 changeById={event => this.changeNameById(event, person.id)}
-                 click={() => this.deletePerson(index)}
+                click={() => this.deletePerson(index)}
               />
             );
-            
           })}
         </div>
       );
-      
+      //It returns a string
+      appBtn = cssClasses.Blue;
 
       //styling changing after the button is clicked
-      style.backgroundColor = "red";
+      // style.backgroundColor = "red";
       //NOTE [] and =
       // style[':hover']={
       //   backgroundColor:'lightblue',
@@ -146,7 +145,7 @@ class App extends Component {
     } //classes =['red']
 
     if (this.state.persons.length <= 1) {
-      classes.push("red"); 
+      classes.push("red");
     }
 
     return (
@@ -167,11 +166,11 @@ class App extends Component {
       6. only ternery operation(if ? :) works in JSX
       */
       //NOTE className is class in css.
-      //NOTE StyleRoot when using media queries 
+      //NOTE StyleRoot when using media queries
       // <StyleRoot>
       <div className={cssClasses.App}>
         <h1>I am an app</h1>
-        
+
         {/* NOTE this can be one way, nut can be messy when project gets bigger */}
         {/* {this.state.ifShown ?
           <div>
@@ -187,7 +186,7 @@ class App extends Component {
           </div>
          : null} */}
         {people}
-        <button style={style} onClick={this.showPeopleHandler}>
+        <button className={appBtn} onClick={this.showPeopleHandler}>
           Show People
         </button>
         <p className={classes.join(" ")}>

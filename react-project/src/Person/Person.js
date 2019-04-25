@@ -1,6 +1,6 @@
 //This is Person component
 import React from "react";
-import "./Person.css";
+import cssClasses from "./Person.module.css";
 // import Radium from 'radium';
 
 const person = props => {
@@ -20,7 +20,7 @@ const person = props => {
   /* NOTE onChange will update if input changes */
   /* NOTE value={props.name} enables two way binding so that the input knows the current value*/
   return (
-    <div className="Person">
+    <div className={cssClasses.Person}>
       <p onClick={props.click}>
         I am {props.name} I am {props.age}
       </p>
