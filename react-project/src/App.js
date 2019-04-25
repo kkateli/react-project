@@ -8,7 +8,7 @@ import Validation from "./Validation/Validation";
 
 import Char from "./Char/Char";
 
-import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   // REVIEW (state is an object)we need to use state with care
@@ -82,11 +82,11 @@ class App extends Component {
       backgroundColor: "white",
       font: "inherit",
       border: "1px solid blue",
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
+      // ':hover':{
+      //   backgroundColor:'lightgreen',
+      //   color:'black'
 
-      }
+      // }
     };
     //NOTE split will convet a string to an array with coresponding chars, spliting is based on ''
     //TODO why can return in the map method?
@@ -132,11 +132,11 @@ class App extends Component {
       //styling changing after the button is clicked
       style.backgroundColor = "red";
       //NOTE [] and =
-      style[':hover']={
-        backgroundColor:'lightblue',
-        color:'black'
+      // style[':hover']={
+      //   backgroundColor:'lightblue',
+      //   color:'black'
 
-      }
+      // }
     }
 
     const classes = [];
@@ -168,7 +168,7 @@ class App extends Component {
       */
       //NOTE className is class in css.
       //NOTE StyleRoot when using media queries 
-      <StyleRoot>
+      // <StyleRoot>
       <div className="App">
         <h1>I am an app</h1>
         
@@ -199,9 +199,10 @@ class App extends Component {
         <Validation len={this.state.userInputCount} />
         {wordList}
       </div>
-      </StyleRoot>
+      // </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+// export default Radium(App);
+export default App;
