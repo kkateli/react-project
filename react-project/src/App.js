@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import "./App.css";
+//change css files name to sth.module.css to use css module features
+import cssClasses from "./App.module.css";//this name here is up to you
 
 import Person from "./Person/Person";
 
@@ -169,7 +169,7 @@ class App extends Component {
       //NOTE className is class in css.
       //NOTE StyleRoot when using media queries 
       // <StyleRoot>
-      <div className="App">
+      <div className={cssClasses.App}>
         <h1>I am an app</h1>
         
         {/* NOTE this can be one way, nut can be messy when project gets bigger */}
