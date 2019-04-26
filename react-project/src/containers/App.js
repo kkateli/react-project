@@ -8,6 +8,8 @@ import Validation from "../components/Validation/Validation";
 
 import Char from "../components/Char/Char";
 
+import Cockpit from "../components/Cockpit/Cockpit";
+
 // import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
@@ -187,7 +189,7 @@ class App extends Component {
           </div>
          : null} */}
         {people}
-        <button className={appBtn} onClick={this.showPeopleHandler}>
+        {/* <button className={appBtn} onClick={this.showPeopleHandler}>
           Show People
         </button>
         <p className={classes.join(" ")}>
@@ -197,7 +199,12 @@ class App extends Component {
         <input style={inputStyle} onChange={event => this.inputLength(event)} />
         <p>Count:{this.state.userInputCount}</p>
         <Validation len={this.state.userInputCount} />
+        {wordList} */}
+        <Cockpit pname = {classes.join(" ")} appBtn = {appBtn} showed = {this.showPeopleHandler}/>
         {wordList}
+        <input style={inputStyle} onChange={event => this.inputLength(event)} />
+        <p>Count:{this.state.userInputCount}</p>
+        <Validation len={this.state.userInputCount} />
       </div>
       // </StyleRoot>
     );
