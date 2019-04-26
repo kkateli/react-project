@@ -2,11 +2,11 @@ import React, { Component } from "react";
 //change css files name to sth.module.css to use css module features
 import cssClasses from "./App.module.css"; //this name here is up to you
 
-import Person from "./Person/Person";
+import Persons from "../components/Persons/Persons";
 
-import Validation from "./Validation/Validation";
+import Validation from "../components/Validation/Validation";
 
-import Char from "./Char/Char";
+import Char from "../components/Char/Char";
 
 // import Radium, {StyleRoot} from 'radium';
 
@@ -101,7 +101,7 @@ class App extends Component {
     if (this.state.ifShown) {
       people = (
         <div>
-          {/*The alternative of this 
+          {/* The alternative of this 
           <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}
@@ -112,7 +112,7 @@ class App extends Component {
           </Person>
           /> is:
           (Convert javascript arraies to JSX!!!!) NOTE */}
-          {this.state.persons.map((person, index) => {
+          {/* {this.state.persons.map((person, index) => {
             return (
               <Person
                 name={person.name}
@@ -122,7 +122,8 @@ class App extends Component {
                 click={() => this.deletePerson(index)}
               />
             );
-          })}
+          })} */}
+          <Persons persons={this.state.persons} changed = {this.changeNameById} deleted={this.deletePerson}/>
         </div>
       );
       //It returns a string
