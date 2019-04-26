@@ -94,11 +94,8 @@ class App extends Component {
       return <Char clickChar={() => this.deleteChar({ index })} word={char} />;
     });
 
-    const inputStyle = {
-      border: "1px black solid"
-    };
     //use if/else statement outside JSX
-    let appBtn = "";
+    // let appBtn = "";
     let people = null;
     if (this.state.ifShown) {
       people = (
@@ -129,7 +126,7 @@ class App extends Component {
         </div>
       );
       //It returns a string
-      appBtn = cssClasses.Blue;
+      // appBtn = cssClasses.Blue;
 
       //styling changing after the button is clicked
       // style.backgroundColor = "red";
@@ -200,9 +197,9 @@ class App extends Component {
         <p>Count:{this.state.userInputCount}</p>
         <Validation len={this.state.userInputCount} />
         {wordList} */}
-        <Cockpit pname = {classes.join(" ")} appBtn = {appBtn} showed = {this.showPeopleHandler}/>
+        <Cockpit pname = {classes.join(" ")} shown = {this.state.ifShown} showed = {this.showPeopleHandler}/>
         {wordList}
-        <input style={inputStyle} onChange={event => this.inputLength(event)} />
+        <input onChange={event => this.inputLength(event)} />
         <p>Count:{this.state.userInputCount}</p>
         <Validation len={this.state.userInputCount} />
       </div>

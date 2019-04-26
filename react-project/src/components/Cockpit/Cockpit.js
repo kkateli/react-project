@@ -1,8 +1,13 @@
 import React from "react";
+import cssClasses from "./Cockpit.module.css";
 const cockpit = (props)=>{
+    let appBtn = "";
+    if(props.shown){
+        appBtn  = cssClasses.Blue;
+    }
     return (
-        <div>
-        <button className={props.appBtn} onClick={props.showed}>
+        <div className={cssClasses.Cockpit}>
+        <button className={appBtn} onClick={props.showed}>
           Show People
         </button>
         <p className={props.pName}>

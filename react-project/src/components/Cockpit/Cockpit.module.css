@@ -1,0 +1,24 @@
+/* as className = App in App.js, button styling works automatically */
+.Cockpit button {
+  background-color: white;
+  font: inherit;
+  border: 1px solid red;
+}
+
+.Cockpit button:hover {
+  background-color: red;
+  font: inherit;
+  border: 1px solid red;
+}
+
+.Cockpit .Blue {
+  background-color: lightblue;
+  font: inherit;
+  border: 1px solid lightblue;
+}
+
+.Cockpit .Blue:hover {
+  background-color: blue;
+  font: inherit;
+  border: 1px solid blue;
+}
