@@ -169,7 +169,7 @@ class App extends Component {
       //NOTE StyleRoot when using media queries
       // <StyleRoot>
       <div className={cssClasses.App}>
-        <h1>I am an app</h1>
+        <h1>{this.props.appTitle}</h1>
 
         {/* NOTE this can be one way, nut can be messy when project gets bigger */}
         {/* {this.state.ifShown ?
